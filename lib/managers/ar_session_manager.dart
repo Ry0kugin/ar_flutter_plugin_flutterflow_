@@ -122,9 +122,9 @@ class ARSessionManager {
   }
 
   //Show or hide planes
-  void showPlanes(bool showPlanes){
+  void showPlanes(bool showPlanes) {
     _channel.invokeMethod<void>('showPlanes', {
-    "showPlanes": showPlanes,
+      "showPlanes": showPlanes,
     });
   }
 
@@ -138,17 +138,17 @@ class ARSessionManager {
           if (onError != null) {
             onError!(call.arguments[0]);
             print(call.arguments);
-          }
-          else{
+          } else {
             ScaffoldMessenger.of(buildContext).showSnackBar(SnackBar(
                 content: Text(call.arguments[0]),
                 action: SnackBarAction(
                     label: 'HIDE',
-                    onPressed:
-                    ScaffoldMessenger.of(buildContext).hideCurrentSnackBar)));
+                    onPressed: ScaffoldMessenger.of(buildContext)
+                        .hideCurrentSnackBar)));
           }
           break;
         case 'onPlaneOrPointTap':
+          // ignore: unnecessary_null_comparison
           if (onPlaneOrPointTap != null) {
             final rawHitTestResults = call.arguments as List<dynamic>;
             final serializedHitTestResults = rawHitTestResults
@@ -162,6 +162,7 @@ class ARSessionManager {
           }
           break;
         case 'onPlaneDetected':
+          // ignore: unnecessary_null_comparison
           if (onPlaneDetected != null) {
             final planeCountResult = call.arguments as int;
             onPlaneDetected(planeCountResult);
@@ -206,7 +207,6 @@ class ARSessionManager {
       'handleRotation': handleRotation,
     });
   }
-
 
   /// Dispose the AR view on the platforms to pause the scenes and disconnect the platform handlers.
   /// You should call this before removing the AR view to prevent out of memory erros

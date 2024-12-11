@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:ar_flutter_plugin_flutterflow/models/ar_anchor.dart';
 import 'package:ar_flutter_plugin_flutterflow/models/ar_node.dart';
 import 'package:ar_flutter_plugin_flutterflow/utils/json_converters.dart';
@@ -136,7 +134,7 @@ class ARObjectManager {
       } else {
         return await _channel.invokeMethod<bool>('addNode', node.toMap());
       }
-    } on PlatformException catch (e) {
+    } on PlatformException {
       return false;
     }
   }
